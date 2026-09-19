@@ -28,7 +28,7 @@ jobs:
 
             - name: Run tests
               working-directory: app1-hello/python
-              run: pytest -m py_compile main.py
+              run: python -m py_compile main.py
 
     docker-build-push:
         needs: build-test
