@@ -1,11 +1,11 @@
-name: Hell o Python to AWS EKS
+name: Hello Python to AWS EKS
 
 on: 
     push:
         branches: 
             - "main"
-        paths:
-            - "pipelines"
+        # paths:
+        #     - "pipelines/app1-hello/python/"
     workflow_dispatch:
         
 jobs:
