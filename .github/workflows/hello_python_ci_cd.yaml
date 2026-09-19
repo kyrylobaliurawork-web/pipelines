@@ -21,13 +21,13 @@ jobs:
                 python-version: '3.9'
 
             - name: Install dependencies
-              working-directory: pipelines/app1-hello/python
+              working-directory: app1-hello/python
               run: |
                 python -m pip install --upgrade pip
                 pip install -r requirements.txt
 
             - name: Run tests
-              working-directory: pipelines/app1-hello/python
+              working-directory: app1-hello/python
               run: pytest -m py_compile main.py
 
     docker-build-push:
@@ -45,7 +45,7 @@ jobs:
             - name: Build and push Docker image
               uses: docker/build-push-action@v5
               with:
-                context: pipelines/app1-hello/python
+                context: app1-hello/python
                 push: true
                 tags: ${{ secrets.DOCKER_USERNAME }}/app1-hello-python:latest
     deploy-to-aws-eks:
@@ -74,4 +74,4 @@ jobs:
             
             - name: Deploy to AWS EKS   
               run: |
-                kubectl apply -f pipelines/app1-hello/python/k8s/deployment.yaml
+                kubectl apply -f app1-hello/python/k8s/deployment.yaml
