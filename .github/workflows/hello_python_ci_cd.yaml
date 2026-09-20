@@ -62,18 +62,18 @@ jobs:
                 aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
                 aws-region: us-east-1
             
-            - name: Install eksctl
-              run: |
-                curl --silent --location "https://github.com/eksctl-io/eksctl/releases/latest/download/eksctl_Linux_amd64.tar.gz" | tar xz -C /tmp
-                sudo mv /tmp/eksctl /usr/local/bin
+            # - name: Install eksctl
+            #   run: |
+            #     curl --silent --location "https://github.com/eksctl-io/eksctl/releases/latest/download/eksctl_Linux_amd64.tar.gz" | tar xz -C /tmp
+            #     sudo mv /tmp/eksctl /usr/local/bin
 
-            - name: Create EKS cluster if not exists
-              run: |
-                if aws eks describe-cluster --name hello-eks-cluster --region us-east-1 >/dev/null 2>&1; then
-                  echo "Cluster already exists, skipping creation"
-                else
-                  eksctl create cluster --name hello-eks-cluster --region us-east-1 --node-type t3.small --nodes 2
-                fi
+            # - name: Create EKS cluster if not exists
+            #   run: |
+            #     if aws eks describe-cluster --name hello-eks-cluster --region us-east-1 >/dev/null 2>&1; then
+            #       echo "Cluster already exists, skipping creation"
+            #     else
+            #       eksctl create cluster --name hello-eks-cluster --region us-east-1 --node-type t3.small --nodes 2
+            #     fi
             
             - name: Set up kubectl
               uses: azure/setup-kubectl@v4
